@@ -11,3 +11,16 @@ However, beneath this friendly veneer is a much darker secret: bananas don't lik
 Bananai is the application of deep learning to banana ripeness, using image recognition to determine when a banana is best to eat. In combination with an Arduino BLE 33 Sense, Bananai is deployed on a banana stand to provide an immediate indication of when to consume. No more embarassment. No more pain.
 
 The following readme describes how Bananai came to be, and outlines the steps taken in its development. Instructions on how to deploy are also provided.
+
+# Project Process
+
+Several steps were taken to design Bananai. These steps included:
+
+* Decide on a model architecture
+* Decide on a data architecture
+* Gather images of bananas
+* Clean and format images of bananas
+* Construct a model on Edge Impulse
+* Deploy the model to an Arduino BLE 33 Sense
+* Build an enclosure
+* Construct the final device on a banana holder
