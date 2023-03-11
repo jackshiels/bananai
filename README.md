@@ -24,3 +24,8 @@ Several steps were taken to design Bananai. These steps included:
 * Deploy the model to an Arduino BLE 33 Sense
 * Build an enclosure
 * Construct the final device on a banana holder
+
+# Findings
+
+* Increasing the number of images with transfer learning didn't appear to help accuracy.
+* Moving into the 160x160 models caused a loss of accuracy.
