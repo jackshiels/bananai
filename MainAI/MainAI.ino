@@ -152,15 +152,10 @@ void loop()
     bool stop_inferencing = false;
 
     while(stop_inferencing == false) {
-        ei_printf("\nStarting inferencing in 2 seconds...\n");
-
         // instead of wait_ms, we'll wait on the signal, this allows threads to cancel us...
         if (ei_sleep(2000) != EI_IMPULSE_OK) {
             break;
         }
-
-        ei_printf("Taking photo...\n");
-
         if (ei_camera_init() == false) {
             ei_printf("ERR: Failed to initialize image sensor\r\n");
             break;
@@ -204,10 +199,6 @@ void loop()
             ei_free(snapshot_mem);
             break;
         }
-
-        // print the predictions
-        ei_printf("Predictions (DSP: %d ms., Classification: %d ms., Anomaly: %d ms.): \n",
-                  result.timing.dsp, result.timing.classification, result.timing.anomaly);
 #if EI_CLASSIFIER_OBJECT_DETECTION == 1
         bool bb_found = result.bounding_boxes[0].value > 0;
         for (size_t ix = 0; ix < result.bounding_boxes_count; ix++) {
@@ -223,6 +214,9 @@ void loop()
             ei_printf("    No objects found\n");
         }
 #else
+        if (result.classification[1].value > 0.6f){ei_printf("Banana is ready to eat :D \n");}
+        else if (result.classification[0].value > 0.6f){ei_printf("Banana is unripe :( \n");}
+        else{ei_printf("Uncertain about banana ripeness. Retrying...\n");}
         for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
             ei_printf("    %s: %.5f\n", result.classification[ix].label,
                                         result.classification[ix].value);
