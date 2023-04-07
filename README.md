@@ -35,7 +35,7 @@ BananAI was split into two architectures: software (including AI) and hardware.
 ## Software
 BananAI utilises Transfer Learning. Transfer learning is an AI model architecture that uses large, existing models to act as a basis for the training of smaller collections of domain-specific data, which can save time (Tensorflow, 2022). Transfer learning was a good choice for BananAI, as it doesn't necessitate the gathering of thousands of images of bananas.
 
-The AI model would be trained on Edge Impulse. Edge Impulse is a Platform-as-a-Service (PaaS) for training and deploying AI models on a variety of hardware (including Arduinos) (Edge Impulse, 2022). Edge Impulse is streamlined and easier to use for fast iteration of Arduino-focused AI models, as it can deploy to these devices easily.
+The AI model would be trained on Edge Impulse. Edge Impulse is a Platform-as-a-Service (PaaS) for training and deploying AI models on a variety of hardware (including Arduinos) (Edge Impulse, 2022). Edge Impulse is streamlined and easier to use for fast iteration of Arduino-focused AI models, as it can deploy to these devices easily and utilises compression to make models compatible with low-memory devices.
 
 ## Hardware
 ![Arduino Nano 33 BLE Sense](https://github.com/jackshiels/bananai/blob/main/GitImages/nano.jpg?raw=true)
@@ -49,7 +49,9 @@ The device selected for this AI is the Arduino Nano 33 BLE Sense (Arduino.cc, n.
 These limitations constrained the complexity of the AI model, as will be described later in the readme.
 
 # Data gathering
-Banana ripeness is a sliding scale, and past research into this topic shows varying opinions on how to classify bananas. For example, Mazen and Nashat define four categories of classification (2018), while Marimuthu and Roomi used seven (2017). Another factor in classification is the limitations of the Arduino's memory, which is 256KB. Models with more categories proved too large for this device.
+Banana ripeness is a sliding scale, and past research into this topic shows varying opinions on how to classify bananas. For example, Mazen and Nashat define four categories of classification for an Artificial Neural Network (ANN), based on the percentage value of brown spots and other features (2018). Marimuthu and Roomi used seven for a fuzzy model (2017). However, several studies settle on four categories (Rizzo et al., 2023): unripe, yellowish-green, mid-ripen, and overripe (Saragih & Emanuel, 2021).
+
+A factor in classification is the limitations of the Arduino's memory, which is 256KB. Models with more categories proved too large for this device.
 
 Images of bananas were initially split into three categories, being:
 
@@ -68,6 +70,7 @@ Images were then transferred to a personal computer and converted from HEIC to J
 * Moving into the 160x160 models caused a loss of accuracy.
 * Adding final neurons and increasing the learning rate helped with accuracy at cost of overfitting.
 * Banana features may be better represented in certain statistical models (Mazen & Nashat, 2018).
+* Other models also have a hard time distinguishing between categories (Mazen & Nashat, 2018).
 
 # References
 Amazon (2023). *Model Fit: Underfitting vs. Overfitting*. Available at: https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html (accessed 1 April 2023).
