@@ -49,11 +49,11 @@ The device selected for this AI is the Arduino Nano 33 BLE Sense (Arduino.cc, n.
 These limitations constrained the complexity of the AI model, as will be described later in the readme.
 
 # Data gathering
-Banana ripeness is a sliding scale, and past research into this topic shows varying opinions on how to classify bananas. For example, Mazen and Nashat define four categories of classification for an Artificial Neural Network (ANN), based on the percentage value of brown spots and other features (2018). Marimuthu and Roomi used seven for a fuzzy model (2017). However, several studies settle on four categories (Rizzo et al., 2023): unripe, yellowish-green, mid-ripen, and overripe (Saragih & Emanuel, 2021).
+Banana ripeness is a sliding scale, and past research into statistical and AI banana classification shows varying opinions on how to approach the problem. For example, Mazen and Nashat define four categories of classification for an Artificial Neural Network (ANN), based on the percentage value of brown spots and other features (2018). Marimuthu and Roomi (2017) used three for a fuzzy model (unripe, ripe, overripe). Saragih and Emanuel define four categories: unripe, yellowish-green, mid-ripen, and overripe (2021). 
 
-A factor in classification is the limitations of the Arduino's memory, which is 256KB. Models with more categories proved too large for this device.
+Rizzo et al. (2023, p.46) note that categories of ripeness "can be arbitrarily large". Marimuthu and Roomi (2017, p.4095) note that it is "ambiguous to quantify the ripening levels with strict boundaries" due to the fact that banana ripeness is "fuzzy in nature". Another factor in this classification decision is the Arduino's limited memory of 256KB. Models with more categories would be too large. Furthermore, the "green" stage of a banana is challenging to get data for, as it occurs before shipping commences (Marimuthu & Roomi, 2017). 
 
-Images of bananas were initially split into three categories, being:
+Hence, images of bananas were split into three categories, being:
 
 * Underripe.
 * Ripe.
@@ -71,17 +71,24 @@ Images were then transferred to a personal computer and converted from HEIC to J
 * Adding final neurons and increasing the learning rate helped with accuracy at cost of overfitting.
 * Banana features may be better represented in certain statistical models (Mazen & Nashat, 2018).
 * Other models also have a hard time distinguishing between categories (Mazen & Nashat, 2018).
+* We could experiment with image transformations in colour space.
 
 # References
-Amazon (2023). *Model Fit: Underfitting vs. Overfitting*. Available at: https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html (accessed 1 April 2023).
+Amazon (2023). *'Model fit: underfitting vs. overfitting'*. Available at: https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html (accessed 1 April 2023).
 
-Arduino.cc (n.d.). *Nano 33 BLE Sense*. Available at: https://docs.arduino.cc/hardware/nano-33-ble-sense (accessed 13 March 2023).
+Arduino.cc (n.d.). *'Nano 33 BLE Sense'*. Available at: https://docs.arduino.cc/hardware/nano-33-ble-sense (accessed 13 March 2023).
 
-Edge Impulse (2022). *Getting Started*. Available at: https://docs.edgeimpulse.com/docs (accessed 7 April 2023).
+Edge Impulse (2022). *'Getting started'*. Available at: https://docs.edgeimpulse.com/docs (accessed 7 April 2023).
 
-Narayan, J., Hu, K. and Mukherjee, S. (2023). *Elon Musk and others urge AI pause, citing 'risks to society'*. Available at: https://www.reuters.com/technology/musk-experts-urge-pause-training-ai-systems-that-can-outperform-gpt-4-2023-03-29/ (accessed 3 April, 2023).
+Marimuthu, S. and Roomi, S. M. M. (2017). 'Particle swarm optimized fuzzy model for the classification of banana ripeness'. *IEEE Sensors Journal*, 17(15), pp.4903-4915. doi: 10.1109/JSEN.2017.2715222.
 
-Rizzo, M., Marcuzzo, M., Zangari, A., Gasparetto, A. and Albarelli, A. (2023). ‘Fruit ripeness classification: A survey’, Artificial Intelligence in Nature, 7, pp. 44-57. doi: 10.1016/j.aiia.2023.02.004
+Mazen, F. M. A. and Nashat, A. A. (2019). 'Ripeness classification of bananas using an artificial neural network'. *Arabian Journal for Science and Engineering*, 44, pp.6901–6910. doi: 10.1007/s13369-018-03695-5.
 
-Tensorflow (2022). *Transfer learning and fine-tuning*. Available at: 
-https://www.tensorflow.org/tutorials/images/transfer_learning (accessed 20 March 2023).
+Narayan, J., Hu, K. and Mukherjee, S. (2023). *'Elon Musk and others urge AI pause, citing 'risks to society''*. Available at: https://www.reuters.com/technology/musk-experts-urge-pause-training-ai-systems-that-can-outperform-gpt-4-2023-03-29/ (accessed 3 April, 2023).
+
+Rizzo, M., Marcuzzo, M., Zangari, A., Gasparetto, A. and Albarelli, A. (2023). ‘Fruit ripeness classification: A survey’, Artificial Intelligence in Nature, 7, pp. 44-57. doi: 10.1016/j.aiia.2023.02.004.
+
+Saragih, R. E. and Emanuel, A. W. R. (2021). 'Banana ripeness classification based on deep learning using convolutional neural network', *2021 3rd East Indonesia Conference on Computer and Information Technology (EIConCIT)*. Surabaya, Indonesia, 9-11 April. Piscataway, NJ: IEEE. pp. 85-89. doi: 10.1109/EIConCIT50028.2021.9431928.
+
+Tensorflow (2022). *'Transfer learning and fine-tuning'*. Available at: 
+https://www.tensorflow.org/tutorials/images/transfer_learning (accessed 20 March 2023). 
