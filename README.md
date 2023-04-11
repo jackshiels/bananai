@@ -48,7 +48,7 @@ The device selected for this AI is the Arduino Nano 33 BLE Sense (Arduino.cc, n.
 
 These limitations constrained the complexity of the AI model, as will be described later in the readme.
 
-# Data gathering
+# Data gathering and transformation
 Banana ripeness is a sliding scale, and past research into statistical and AI banana classification shows varying opinions on how to approach the problem. For example, Mazen and Nashat define four categories of classification for an Artificial Neural Network (ANN), based on the percentage value of brown spots and other features (2018). Marimuthu and Roomi (2017) used three for a fuzzy model (unripe, ripe, overripe). Saragih and Emanuel define four categories: unripe, yellowish-green, mid-ripen, and overripe (2021). 
 
 Rizzo et al. (2023, p.46) note that categories of ripeness "can be arbitrarily large". Marimuthu and Roomi (2017, p.4095) note that it is "ambiguous to quantify the ripening levels with strict boundaries" due to the fact that banana ripeness is "fuzzy in nature". Another factor in this classification decision is the Arduino's limited memory of 256KB. Models with more categories would be too large. Furthermore, the "green" stage of a banana is challenging to get data for, as it occurs before shipping commences (Marimuthu & Roomi, 2017). 
@@ -59,11 +59,16 @@ Hence, images of bananas were split into three categories, being:
 * Ripe.
 * Overripe.
 
-Photos of bananas were captured on an iPhone 13 Pro in various positions, bunches of bananas, lighting circumstances, and with varying backgrounds. The data set can be obtained here. A selection of images is displayed below to illustrate the data set's diversity. 
+However, these categories were eventually condensed into ripe and overripe for reasons described below.
+
+Photos of bananas were captured on an iPhone 13 Pro in various positions, bunches of bananas, lighting circumstances, and with varying backgrounds. The data set can be obtained [here](https://www.kaggle.com/datasets/jackshiels1/bananai). A selection of images is displayed below to illustrate the data set's diversity. 
 
 ![Arduino Nano 33 BLE Sense](https://github.com/jackshiels/bananai/blob/main/GitImages/banana_images_sample.jpg?raw=true)
 
-Images were then transferred to a personal computer and converted from HEIC to JPG format. Following conversion, a batch image processing tool was used to transform images to 288x384 resolution. Images were then stored in ordered folders for ease of access. After some training, it was discovered that some images were classified incorrectly during the batch conversion process. These errors were remedied and the images were subsequently reorganised.
+Images were then transferred to a personal computer and converted from HEIC to JPG format. Following conversion, a batch image processing tool was used to transform images to 288x384 resolution. Images were then stored in ordered folders for ease of access and low-quality or irrelevant images were removed.
+
+# Model training and iteration
+
 
 # Findings
 * Increasing the number of images with transfer learning didn't appear to help accuracy.
