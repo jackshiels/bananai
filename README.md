@@ -51,7 +51,7 @@ These limitations constrained the complexity of the AI model, as will be describ
 # Data gathering and transformation
 Banana ripeness is a sliding scale, and past research into statistical and AI banana classification shows varying opinions on how to approach the problem. For example, Mazen and Nashat define four categories of classification for an Artificial Neural Network (ANN), based on the percentage value of brown spots and other features (2018). Marimuthu and Roomi (2017) used three for a fuzzy model (unripe, ripe, overripe). Saragih and Emanuel define four categories: unripe, yellowish-green, mid-ripen, and overripe (2021). 
 
-Rizzo et al. (2023, p.46) note that categories of ripeness "can be arbitrarily large". Marimuthu and Roomi (2017, p.4095) note that it is "ambiguous to quantify the ripening levels with strict boundaries" due to the fact that banana ripeness is "fuzzy in nature". Another factor in this classification decision is the Arduino's limited memory of 256KB. Models with more categories would be too large. Furthermore, the "green" stage of a banana is challenging to get data for, as it occurs before shipping commences (Marimuthu & Roomi, 2017). 
+Rizzo et al. (2023, p.46) note that categories of ripeness "can be arbitrarily large". Marimuthu and Roomi (2017, p.4095) note that it is "ambiguous to quantify the ripening levels with strict boundaries" due to the fact that banana ripeness is "fuzzy in nature". Another factor in this classification decision is the Arduino's limited memory of 256KB. Models with more categories would be too large. Furthermore, the "green" stage of a banana is challenging to get data for, as it occurs before shipping commences (Marimuthu & Roomi, 2017).
 
 Hence, images of bananas were split into three categories, being:
 
@@ -68,7 +68,30 @@ Photos of bananas were captured on an iPhone 13 Pro in various positions, bunche
 Images were then transferred to a personal computer and converted from HEIC to JPG format. Following conversion, a batch image processing tool was used to transform images to 288x384 resolution. Images were then stored in ordered folders for ease of access and low-quality or irrelevant images were removed.
 
 # Model training and iteration
+Initially, three categories were trained across a range of parameters. The parameters included:
 
+* Number of images.
+* Epochs (training cycles of either 20 or 50).
+* Data augmentation (enabling algorithmic transformation of image data to produce a larger image set).
+* Final layer neurons (0 or 32).
+
+Training was split by number of images, then each sub-category was trained (e.g., number of epochs). 1,186 images were collected in total. Accuracy declined marginally as images were added to the model:
+
+![3 category accuracy with images](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_image_quantity.png?raw=true)
+
+An interesting finding was that both data augmentation and the addition of final layer neurons became less effective at increasing accuracy as the model's images increased in number.
+
+*Data augmentation*
+![3 category accuracy with data augmentation](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_data_augmentation.png?raw=true)
+
+*Neurons*
+![3 category accuracy with data augmentation](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_neurons.png?raw=true)
+
+The most successful model was able to achieve a test data accuracy of 71% based on a validation accuracy of 74.6%, which was far below optimal (see below).
+
+![3 category model accuracy](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/top_3cat_model.png?raw=true)
+
+A large amount of the accuracy loss came from the model's inability to distinguish between ripe and underripe bananas, which have a subtle difference in colour and texture (see below).
 
 # Findings
 * Increasing the number of images with transfer learning didn't appear to help accuracy.
