@@ -114,7 +114,7 @@ As with the three category model, both data augmentation and final layer neurons
 ![2 category accuracy with final layer neurons](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/2cat_accuracy_neurons.png?raw=true)
 
 # Software, Device Design, and Deployment
-
+(To be added).
 
 # Findings
 Several key findings were drawn from this small study into AI:
@@ -123,13 +123,6 @@ Several key findings were drawn from this small study into AI:
 * Accurate three category models appear challenging to achieve with a deep learning approach. Other approaches, such as ANNs, seem more effective at discrete ripeness categorisation (Mazen & Nashat, 2018).
 * Increasing images tended to increase accuracy, but with diminishing returns. Time constraints meant that it was not possible to gather more than the ~ 1,200 obtained during this study, and a more accurate three category model would take a lot longer to develop.
 * Both data augmentation and final layer neurons are able to increase the accuracy of smaller data sets, but harm accuracy as the number of images increases.
-
-* Increasing the number of images with transfer learning didn't appear to help accuracy.
-* Moving into the 160x160 models caused a loss of accuracy.
-* Adding final neurons and increasing the learning rate helped with accuracy at cost of overfitting.
-* Banana features may be better represented in certain statistical models (Mazen & Nashat, 2018).
-* Other models also have a hard time distinguishing between categories (Mazen & Nashat, 2018).
-* We could experiment with image transformations in colour space.
 
 # References
 Amazon (2023). *'Model fit: underfitting vs. overfitting'*. Available at: https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html (accessed 1 April 2023).
