@@ -162,7 +162,7 @@ Deployment requires that the user clone this repository and compile the MainAI.i
 # Findings and conclusion
 ## Reflections and future work
 Several key findings were drawn from this small study into AI:
-* Achieving a 90% level of validation and test accuracy was possible with as little as 200 images in a two category model. However, 1,200 images were insufficient for a three category model with >90% accuracy.
+* Achieving a 90% level of validation and test accuracy was possible with as little as 200 images in a two category transfer learning model. However, 1,200 images were insufficient for a three category model with >90% accuracy.
 * This two category model was deployable on an Arduino device despite RAM limitations.
 * Accurate three category models appear challenging to achieve with a deep learning approach, most likely due to the subtle differences between banana ripeness stages. Other approaches, such as ANNs, seem more effective at discrete ripeness categorisation (Mazen & Nashat, 2018).
 * Increasing images tended to increase accuracy, but with diminishing returns. Time constraints meant that it was not possible to gather more than the ~ 1,200 obtained during this study, and a more accurate three category model would take a lot longer to develop.
