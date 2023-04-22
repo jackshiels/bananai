@@ -74,6 +74,7 @@ However, these categories were eventually condensed into ripe and overripe for r
 Photos of bananas were captured on an iPhone 13 Pro in various positions, bunches of bananas, lighting circumstances, and with varying backgrounds. The data set can be obtained [here](https://www.kaggle.com/datasets/jackshiels1/bananai). A selection of images is displayed below to illustrate the data set's diversity. 
 
 ![banana images sample](https://github.com/jackshiels/bananai/blob/main/GitImages/banana_images_sample.jpg?raw=true)
+
 Figure 2: banana images sample.
 
 Images were then transferred to a personal computer and converted from HEIC to JPG format. Following conversion, a batch image processing tool was used to transform images to 288x384 resolution. Images were then stored in ordered folders for ease of access and low-quality or irrelevant images were removed.
@@ -108,6 +109,7 @@ Figure 6: three category model accuracy.
 A large amount of the accuracy loss came from the model's inability to distinguish between ripe and underripe bananas, which have a subtle difference in colour and texture. Another study had similarly degraded accuracy between these categories (Mazen & Nashat, 2018).
 
 ![ripe and underripe comparison](https://github.com/jackshiels/bananai/blob/main/GitImages/ripe_underripe_comparison.jpg?raw=true)
+
 Figure 7: ripe and underripe comparison.
 
 As such, a decision was made to narrow categories to ripe and overripe.
