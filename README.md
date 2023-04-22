@@ -5,11 +5,20 @@
 🤖 A deep learning project to detect the ripeness of bananas using an Arduino 🤖
 
 # Why apply Artificial Intelligence (AI) to bananas?
-Artifical Intelligence (AI) is everywhere. From search bots, to cars, to marketing services, AI is experiencing a profound and significant moment in the Zeitgeist. The unregulated and unknown power of tools such as ChatGPT has led to many industry figures calling for a halt to further innovation to prevent catastrophic consequences (Narayan, Hu, &, Mukherjee, 2023). While such tools are immensely complex and almost impossible to reproduce in civilian hands, specific and targeted domain-level AI solutions can be trained and deployed by novice. Hence, this student project chose a unique domain to attach AI to: that of the banana 🍌.
+Artifical Intelligence (AI) is everywhere. From search bots, to cars, to marketing services, AI is experiencing a profound and significant moment in the Zeitgeist. The unregulated and unknown power of tools such as ChatGPT has led to many industry figures calling for a halt to further innovation to prevent catastrophic consequences (Narayan, Hu, &, Mukherjee, 2023). While such tools are immensely complex and almost impossible to reproduce in civilian hands, targeted domain-level AI solutions can be trained and deployed by novices. This student project chose a unique domain to attach AI to: that of the banana 🍌.
 
-Bananas are an instantly recognisable fruit. Undeniably unique, bananas are easy-to-hold, hangable, and coming with their own protective wrapper. Bananas, like many other fruit, provide value from their ripeness and availability to eat, which diminishes over time (Rizzo et al., 2023). As such, it becomes important for both supply chain efficiency and personal consumption to know when a banana is at the ideal point to eat.
+Bananas are an instantly recognisable fruit. Undeniably unique, bananas are easy-to-hold, hangable, and comie with their own protective wrapper. Bananas, like many other fruit, provide value from their ripeness and availability to eat, which diminishes over time (Rizzo et al., 2023). As such, it becomes important for both supply chain efficiency and personal consumption to know when a banana is at the ideal point to eat.
 
-BananAI is the application of deep learning to banana ripeness, using image recognition to determine when a banana is best to eat. In combination with an Arduino BLE 33 Sense, BananAI is deployed on a banana stand to provide an immediate indication of when to consume. The following readme describes how BananAI came to be, and outlines the steps taken in its development. Instructions on how to deploy are also provided.
+BananAI is the application of deep learning to banana ripeness, using image recognition to determine when a banana is best to eat. In combination with an Arduino BLE 33 Sense, BananAI is deployed on a banana stand to provide an immediate indication of when to consume. The following document describes how BananAI came to be, and outlines the steps taken in its development. Instructions on how to deploy are also provided.
+
+# Contents
+* Research question
+* Project outline
+* Deciding on the physical and software/AI architecture
+* Data gathering and transformation
+* Model training and iteration
+* Software, device design, and deployment
+* Findings and conclusion
 
 # Research question
 Given the need for a way to detect banana ripeness, the following research question was determined:
@@ -39,6 +48,7 @@ The AI model would be trained on Edge Impulse. Edge Impulse is a Platform-as-a-S
 
 ## Hardware
 ![Arduino Nano 33 BLE Sense](https://github.com/jackshiels/bananai/blob/main/GitImages/nano.jpg?raw=true)
+Figure 1: Arduino Nano 33 BLE Sense.
 
 The device selected for this AI is the Arduino Nano 33 BLE Sense (Arduino.cc, n.d.). The Nano 33 BLE Sense is capable of running machine learning models with inputs from a camera shield, which would suit a live-classification of bananas. The device is also small and easy to deploy into an enclosure. However, it has several limitations in its specifications, which are:
 
@@ -63,7 +73,8 @@ However, these categories were eventually condensed into ripe and overripe for r
 
 Photos of bananas were captured on an iPhone 13 Pro in various positions, bunches of bananas, lighting circumstances, and with varying backgrounds. The data set can be obtained [here](https://www.kaggle.com/datasets/jackshiels1/bananai). A selection of images is displayed below to illustrate the data set's diversity. 
 
-![Arduino Nano 33 BLE Sense](https://github.com/jackshiels/bananai/blob/main/GitImages/banana_images_sample.jpg?raw=true)
+![banana images sample](https://github.com/jackshiels/bananai/blob/main/GitImages/banana_images_sample.jpg?raw=true)
+Figure 2: banana images sample.
 
 Images were then transferred to a personal computer and converted from HEIC to JPG format. Following conversion, a batch image processing tool was used to transform images to 288x384 resolution. Images were then stored in ordered folders for ease of access and low-quality or irrelevant images were removed.
 
@@ -76,53 +87,84 @@ Initially, three categories were trained across a range of parameters. The param
 * Data augmentation (enabling algorithmic transformation of image data to produce a larger image set).
 * Final layer neurons (0 or 32).
 
-Training was split by number of images, then each sub-category was trained (e.g., number of epochs). 1,186 images were collected in total. Accuracy declined marginally as images were added to the model:
+Training was split by number of images, then each sub-category was trained (e.g., number of epochs) at a learning rate of 0.001. MobileNetV1 96x96 0.25 was used as the transfer learning model, as its output model size small enough to fit in 256KB of RAM. 1,186 images were collected in total. Accuracy declined marginally as images were added to the model. Note: images were split in an 80:20 ratio between training and testing data, meaning image counts must be multiplied by 0.8 to get the true training and validation count.
 
-![3 category accuracy with images](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_image_quantity.png?raw=true)
+![three category accuracy with images](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_image_quantity.png?raw=true)
+Figure 3: three category accuracy with images.
 
 An interesting finding was that both data augmentation and the addition of final layer neurons became less effective at increasing accuracy as the model's images increased in number - even leading to a loss in accuracy.
 
-*Data augmentation*
-![3 category accuracy with data augmentation](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_data_augmentation.png?raw=true)
+![three category accuracy with data augmentation](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_data_augmentation.png?raw=true)
+Figure 4: three category accuracy with data augmentation.
 
-*Neurons*
-![3 category accuracy with final layer neurons](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_neurons.png?raw=true)
+![three category accuracy with final layer neurons](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_neurons.png?raw=true)
+Figure 5: three category accuracy with final layer neurons.
 
 The most successful model was able to achieve a test data accuracy of 71% based on a validation accuracy of 74.6%, which was far below optimal.
 
-![3 category model accuracy](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/top_3cat_model.png?raw=true)
+![three category model accuracy](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/top_3cat_model.png?raw=true)
+Figure 6: three category model accuracy.
 
 A large amount of the accuracy loss came from the model's inability to distinguish between ripe and underripe bananas, which have a subtle difference in colour and texture. Another study had similarly degraded accuracy between these categories (Mazen & Nashat, 2018).
 
-![Ripe and underripe comparison](https://github.com/jackshiels/bananai/blob/main/GitImages/ripe_underripe_comparison.jpg?raw=true)
+![ripe and underripe comparison](https://github.com/jackshiels/bananai/blob/main/GitImages/ripe_underripe_comparison.jpg?raw=true)
+Figure 7: ripe and underripe comparison.
 
 As such, a decision was made to narrow categories to ripe and overripe.
 
 ## Two Category Model
-The two category model proved significantly more accurate. It is surmised that this increase in accuracy comes from the removal of ambiguity between unripe and ripe image categories, which were quite similar. The most accurate model produced 100% accuracy on test data:
+The two category model proved significantly more accurate. It is surmised that this increase in accuracy comes from the removal of ambiguity between unripe and ripe image categories, which were quite similar. Two category accuracy only increased marginally with an increase in images.
 
-![2 category testing accuracy](https://github.com/jackshiels/bananai/blob/main/GitImages/2cat_testing_accuracy.jpg?raw=true)
+![two category accuracy with images](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/2cat_accuracy_image_quantity.png?raw=true)
+Figure 8: two category accuracy with images.
+
+The most accurate model produced 100% accuracy on test data:
+
+![two category model accuracy](https://github.com/jackshiels/bananai/blob/main/GitImages/2cat_testing_accuracy.jpg?raw=true)
+Figure 9: two category model accuracy.
 
 While this model only scored 87.8% accuracy on validation data, other models achieved up to 97%:
 
-![2 category training accuracy](https://github.com/jackshiels/bananai/blob/main/GitImages/2cat_training_accuracy.jpg?raw=true)
+![two category training accuracy](https://github.com/jackshiels/bananai/blob/main/GitImages/2cat_training_accuracy.jpg?raw=true)
+Figure 10: two category training accuracy.
 
 As with the three category model, both data augmentation and final layer neurons led to a general decrease in accuracy as model images increased in number:
 
-![2 category accuracy with data augmentation](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/2cat_accuracy_data_augmentation.png?raw=true)
+![two category accuracy with data augmentation](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/2cat_accuracy_data_augmentation.png?raw=true)
+Figure 11: two category accuracy with data augmentation.
 
-![2 category accuracy with final layer neurons](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/2cat_accuracy_neurons.png?raw=true)
+![two category accuracy with final layer neurons](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/2cat_accuracy_neurons.png?raw=true)
+Figure 12: two category accuracy with final layer neurons.
 
-# Software, Device Design, and Deployment
-(To be added).
+Ultimately, the model with 95% validation and 96% testing accuracy was selected, as it represented the most generally accurate version.
 
-# Findings
+# Software, device design, and deployment
+Software was exported from Edge Impulse as an Arduino library, which was subsequently modified and is available in this repository. Code was deployed on the Arduino, and a prototype banana stand was constructed out of a box and a kitchen hanger.
+
+![prototype banana stand](https://github.com/jackshiels/bananai/blob/main/GitImages/bananastand.jpg?raw=true)
+Figure 13: prototype banana stand.
+
+## Deployment Instructions
+Deployment requires that the user clone this repository and compile the MainAI.ino file onto an Arduino Nano 33 BLE Sense via the Arduino IDE. If the user wishes to train this model themselves, image data can be downloaded from [here](https://www.kaggle.com/datasets/jackshiels1/bananai). The final Edge Impulse model can be cloned from [here](https://studio.edgeimpulse.com/public/215222/latest).
+
+# Findings and conclusion
+## Reflections and future work
 Several key findings were drawn from this small study into AI:
-
 * Achieving a 90% level of validation and test accuracy was possible with as little as 200 images in a two category model. However, 1,200 images were insufficient for a three category model with >90% accuracy.
-* Accurate three category models appear challenging to achieve with a deep learning approach. Other approaches, such as ANNs, seem more effective at discrete ripeness categorisation (Mazen & Nashat, 2018).
+* This two category model was deployable on an Arduino device despite RAM limitations.
+* Accurate three category models appear challenging to achieve with a deep learning approach, most likely due to the subtle differences between banana ripeness stages. Other approaches, such as ANNs, seem more effective at discrete ripeness categorisation (Mazen & Nashat, 2018).
 * Increasing images tended to increase accuracy, but with diminishing returns. Time constraints meant that it was not possible to gather more than the ~ 1,200 obtained during this study, and a more accurate three category model would take a lot longer to develop.
 * Both data augmentation and final layer neurons are able to increase the accuracy of smaller data sets, but harm accuracy as the number of images increases.
+
+Future work could expand on this project by:
+* Attempting to build a very large banana image set to allow the classification of more categories.
+* Utilising other machine learning methods, such as ANNs, in conjunction with deep learning image recognition.
+* Building a more robust enclosure for commercial deployment.
+* Expanding on the software in this project to connect the Arduino to a distributed network for in-store fruit monitoring.
+* Attempting to build a more generalised ripeness model that uses image data from other species of fruit (e.g., strawberries, peppers, oranges, apples, and more).
+
+## Conlusion
+
 
 # References
 Amazon (2023). *'Model fit: underfitting vs. overfitting'*. Available at: https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html (accessed 1 April 2023).
