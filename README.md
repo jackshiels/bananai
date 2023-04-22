@@ -142,6 +142,7 @@ Ultimately, the model with 95% validation and 96% testing accuracy was selected,
 Software was exported from Edge Impulse as an Arduino library, which was subsequently modified and is available in this repository. Code was deployed on the Arduino, and a prototype banana stand was constructed out of a box and a kitchen hanger.
 
 ![prototype banana stand](https://github.com/jackshiels/bananai/blob/main/GitImages/bananastand.jpg?raw=true)
+
 Figure 13: prototype banana stand.
 
 ## Deployment Instructions
