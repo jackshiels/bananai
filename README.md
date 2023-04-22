@@ -68,6 +68,7 @@ Photos of bananas were captured on an iPhone 13 Pro in various positions, bunche
 Images were then transferred to a personal computer and converted from HEIC to JPG format. Following conversion, a batch image processing tool was used to transform images to 288x384 resolution. Images were then stored in ordered folders for ease of access and low-quality or irrelevant images were removed.
 
 # Model training and iteration
+## Three Category Model
 Initially, three categories were trained across a range of parameters. The parameters included:
 
 * Number of images.
@@ -79,27 +80,49 @@ Training was split by number of images, then each sub-category was trained (e.g.
 
 ![3 category accuracy with images](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_image_quantity.png?raw=true)
 
-An interesting finding was that both data augmentation and the addition of final layer neurons became less effective at increasing accuracy as the model's images increased in number.
+An interesting finding was that both data augmentation and the addition of final layer neurons became less effective at increasing accuracy as the model's images increased in number - even leading to a loss in accuracy.
 
 *Data augmentation*
 ![3 category accuracy with data augmentation](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_data_augmentation.png?raw=true)
 
 *Neurons*
-![3 category accuracy with data augmentation](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_neurons.png?raw=true)
+![3 category accuracy with final layer neurons](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_neurons.png?raw=true)
 
-The most successful model was able to achieve a test data accuracy of 71% based on a validation accuracy of 74.6%, which was far below optimal (see below).
+The most successful model was able to achieve a test data accuracy of 71% based on a validation accuracy of 74.6%, which was far below optimal.
 
 ![3 category model accuracy](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/top_3cat_model.png?raw=true)
 
-A large amount of the accuracy loss came from the model's inability to distinguish between ripe and underripe bananas, which have a subtle difference in colour and texture (see below).
+A large amount of the accuracy loss came from the model's inability to distinguish between ripe and underripe bananas, which have a subtle difference in colour and texture. Another study had similarly degraded accuracy between these categories (Mazen & Nashat, 2018).
+
+![Ripe and underripe comparison](https://github.com/jackshiels/bananai/blob/main/GitImages/ripe_underripe_comparison.jpg?raw=true)
+
+As such, a decision was made to narrow categories to ripe and overripe.
+
+## Two Category Model
+The two category model proved significantly more accurate. It is surmised that this increase in accuracy comes from the removal of ambiguity between unripe and ripe image categories, which were quite similar. The most accurate model produced 100% accuracy on test data:
+
+![2 category testing accuracy](https://github.com/jackshiels/bananai/blob/main/GitImages/2cat_testing_accuracy.jpg?raw=true)
+
+While this model only scored 87.8% accuracy on validation data, other models achieved up to 97%:
+
+![2 category training accuracy](https://github.com/jackshiels/bananai/blob/main/GitImages/2cat_training_accuracy.jpg?raw=true)
+
+As with the three category model, both data augmentation and final layer neurons led to a general decrease in accuracy as model images increased in number:
+
+![2 category accuracy with data augmentation](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/2cat_accuracy_data_augmentation.png?raw=true)
+
+![2 category accuracy with final layer neurons](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/2cat_accuracy_neurons.png?raw=true)
+
+# Software, Device Design, and Deployment
+(To be added).
 
 # Findings
-* Increasing the number of images with transfer learning didn't appear to help accuracy.
-* Moving into the 160x160 models caused a loss of accuracy.
-* Adding final neurons and increasing the learning rate helped with accuracy at cost of overfitting.
-* Banana features may be better represented in certain statistical models (Mazen & Nashat, 2018).
-* Other models also have a hard time distinguishing between categories (Mazen & Nashat, 2018).
-* We could experiment with image transformations in colour space.
+Several key findings were drawn from this small study into AI:
+
+* Achieving a 90% level of validation and test accuracy was possible with as little as 200 images in a two category model. However, 1,200 images were insufficient for a three category model with >90% accuracy.
+* Accurate three category models appear challenging to achieve with a deep learning approach. Other approaches, such as ANNs, seem more effective at discrete ripeness categorisation (Mazen & Nashat, 2018).
+* Increasing images tended to increase accuracy, but with diminishing returns. Time constraints meant that it was not possible to gather more than the ~ 1,200 obtained during this study, and a more accurate three category model would take a lot longer to develop.
+* Both data augmentation and final layer neurons are able to increase the accuracy of smaller data sets, but harm accuracy as the number of images increases.
 
 # References
 Amazon (2023). *'Model fit: underfitting vs. overfitting'*. Available at: https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html (accessed 1 April 2023).
