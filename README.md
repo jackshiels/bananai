@@ -48,6 +48,7 @@ The AI model would be trained on Edge Impulse. Edge Impulse is a Platform-as-a-S
 
 ## Hardware
 ![Arduino Nano 33 BLE Sense](https://github.com/jackshiels/bananai/blob/main/GitImages/nano.jpg?raw=true)
+
 Figure 1: Arduino Nano 33 BLE Sense.
 
 The device selected for this AI is the Arduino Nano 33 BLE Sense (Arduino.cc, n.d.). The Nano 33 BLE Sense is capable of running machine learning models with inputs from a camera shield, which would suit a live-classification of bananas. The device is also small and easy to deploy into an enclosure. However, it has several limitations in its specifications, which are:
