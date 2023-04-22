@@ -139,11 +139,20 @@ Figure 12: two category accuracy with final layer neurons.
 Ultimately, the model with 95% validation and 96% testing accuracy was selected, as it represented the most generally accurate version.
 
 # Software, device design, and deployment
-Software was exported from Edge Impulse as an Arduino library, which was subsequently modified and is available in this repository. Code was deployed on the Arduino, and a prototype banana stand was constructed out of a box and a kitchen hanger.
+Software was exported from Edge Impulse as an Arduino library, which was subsequently modified and is available in this repository. The library draws on image data from the Arduino's camera shield, and runs this data in the model. Inferences are then drawn and logged in the serial console. Originally, the development plan included coding an alert for when fruit becomes unripe. However, time constraints meant this was not possible. Furthermore, the chosen Arduino model did not possess Wi-Fi capabilities, making networking a challenge. 
+
+Code was deployed on the Arduino, and a prototype banana stand was constructed out of a box and a kitchen hanger.
 
 ![prototype banana stand](https://github.com/jackshiels/bananai/blob/main/GitImages/bananastand.jpg?raw=true)
 
 Figure 13: prototype banana stand.
+
+A YouTube video of this prototype can be found [here](https://youtu.be/jCL5ce8d4T8).
+
+Furthermore, a version of the banana stand was prototyped for use in stores. This prototype is intended to be suspended above bananas (and potentially other fruit), using a mechanical arm. The arm can be adjusted as is necessary to face specific targets.
+
+![store prototype](https://github.com/jackshiels/bananai/blob/main/GitImages/shop_monitor.jpg?raw=true)
+Figure 14: store prototype
 
 ## Deployment Instructions
 Deployment requires that the user clone this repository and compile the MainAI.ino file onto an Arduino Nano 33 BLE Sense via the Arduino IDE. If the user wishes to train this model themselves, image data can be downloaded from [here](https://www.kaggle.com/datasets/jackshiels1/bananai). The final Edge Impulse model can be cloned from [here](https://studio.edgeimpulse.com/public/215222/latest).
@@ -163,9 +172,10 @@ Future work could expand on this project by:
 * Building a more robust enclosure for commercial deployment.
 * Expanding on the software in this project to connect the Arduino to a distributed network for in-store fruit monitoring.
 * Attempting to build a more generalised ripeness model that uses image data from other species of fruit (e.g., strawberries, peppers, oranges, apples, and more).
+* Selecting a model of Arduino that is better suited to networking and building an alert system for deployed banana stands in stores.
 
 ## Conlusion
-
+This project sought to determine how many images were needed to develop a deployable AI model for recognising banana ripeness of above 90% accuracy. The mini-study concluded that approximately 200 images are needed to achieve >90% accuracy. Furthermore, several insights were gained into the training process and viability of an arduino Nano 33 BLE sense for banana ripeness monitoring. Future work could expand the model, choose a more powerful Arduino device, and extend to include other fruit. By continuing this research, food wastage may be tackled in a cost-effective and intelligent way.
 
 # References
 Amazon (2023). *'Model fit: underfitting vs. overfitting'*. Available at: https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html (accessed 1 April 2023).
