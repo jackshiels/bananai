@@ -177,7 +177,7 @@ Future work could expand on this project by:
 * Selecting a model of Arduino that is better suited to networking and building an alert system for deployed banana stands in stores.
 
 ## Conclusion
-This project sought to determine how many images were needed to develop a deployable AI model for recognising banana ripeness of above 90% accuracy. The mini study concluded that approximately 200 images are needed to achieve >90% accuracy. Furthermore, several insights were gained into the training process and viability of an Arduino Nano 33 BLE sense for banana ripeness monitoring. Future work could expand the model, choose a more powerful Arduino device, and extend to include other fruit. By continuing this research, food wastage may be tackled in a cost-effective and intelligent way.
+This project sought to determine how many images were needed to develop a deployable AI model for recognising banana ripeness and unripeness of above 90% accuracy. The mini study concluded that approximately 200 images are needed to achieve >90% accuracy. Furthermore, several insights were gained into the training process and viability of an Arduino Nano 33 BLE sense for banana ripeness monitoring. Future work could expand the model, choose a more powerful Arduino device, and extend to include other fruit. By continuing this research, food wastage may be tackled in a cost-effective and intelligent way.
 
 # References
 Amazon (2023). *'Model fit: underfitting vs. overfitting'*. Available at: https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html (accessed 1 April 2023).
