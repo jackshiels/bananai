@@ -15,8 +15,8 @@ BananAI is the application of deep learning to banana ripeness, using image reco
 * Research question
 * Project outline
 * Deciding on the physical and software/AI architecture
-* Data gathering and transformation
-* Model training and iteration
+* Data domain, gathering and transformation
+* Model training and iteration.
 * Software, device design, and deployment
 * Findings and conclusion
 
@@ -33,7 +33,7 @@ Ordered steps were taken to design BananAI. These steps included:
 * Deciding on the physical and software/AI architecture.
 * Gathering images.
 * Processing and transforming images.
-* Iterative model training and data gathering.
+* Iterative model training and data gathering through experimentation.
 * Design of the software to deploy on Arduino.
 * Construction of the physical device.
 * Deployment and testing.
@@ -50,16 +50,16 @@ The AI model would be trained on Edge Impulse. Edge Impulse is a Platform-as-a-S
 ![Arduino Nano 33 BLE Sense](https://github.com/jackshiels/bananai/blob/main/GitImages/nano.jpg?raw=true)
 Figure 1: Arduino Nano 33 BLE Sense.
 
-The device selected for this AI is the Arduino Nano 33 BLE Sense (Arduino.cc, n.d.). The Nano 33 BLE Sense is capable of running machine learning models with inputs from a camera shield, which would suit a live classification of bananas. The device is also small and easy to deploy into an enclosure. However, it has several limitations in its specifications, which are:
+The device selected for this AI is the Arduino Nano 33 BLE Sense (Arduino.cc, n.d.). The Nano 33 BLE Sense is capable of running machine learning models with inputs from a camera shield, which would suit a live classification of bananas. The device is also small and easy to deploy into an enclosure. However, it has several specification limitations, which are:
 
 * 256KB of SRAM.
 * 1MB of storage.
 * A 64Mhz processor.
 
-These limitations constrained the complexity of the AI model, as will be described later in the readme.
+These limitations constrained the complexity and accuracy of the AI model, as will be described later in the readme.
 
-# Data gathering and transformation
-Banana ripeness is a sliding scale, and past research into statistical and AI banana classification shows varying opinions on how to approach the problem. For example, Mazen and Nashat define four categories of classification for an Artificial Neural Network (ANN), based on the percentage value of brown spots and other features (2018). Marimuthu and Roomi (2017) used three for a fuzzy model (unripe, ripe, overripe). Saragih and Emanuel define four categories: unripe, yellowish-green, mid-ripen, and overripe (2021). 
+# Data domain, gathering and transformation
+Banana ripeness is a sliding scale, and past research into statistical and AI banana classification shows varying opinions on how to approach the problem. For example, Mazen and Nashat define four categories of classification for an Artificial Neural Network (ANN), based on the percentage value of brown spots and other features (2018). Marimuthu and Roomi (2017) used three categories for a fuzzy model (unripe, ripe, overripe). Saragih and Emanuel (2021) define four categories: unripe, yellowish-green, mid-ripen, and overripe. 
 
 Rizzo et al. (2023, p.46) note that categories of ripeness "can be arbitrarily large". Marimuthu and Roomi (2017, p.4095) note that it is "ambiguous to quantify the ripening levels with strict boundaries" since banana ripeness is "fuzzy in nature". Another factor in this classification decision is the Arduino's limited memory of 256KB. Models with more categories would be too large. Furthermore, the "green" stage of a banana is challenging to get data for, as it occurs before shipping commences (Marimuthu & Roomi, 2017).
 
@@ -71,7 +71,7 @@ Hence, images of bananas were split into three categories, being:
 
 However, these categories were eventually condensed into ripe and overripe for reasons described below.
 
-Photos of bananas were captured on an iPhone 13 Pro in various positions, bunches of bananas, lighting circumstances, and with varying backgrounds. The data set can be obtained [here](https://www.kaggle.com/datasets/jackshiels1/bananai). A selection of images is displayed below to illustrate the data set's diversity. 
+Photos of bananas were captured on an iPhone 13 Pro in various positions, bunches of bananas, lighting circumstances, and with varying backgrounds. The three category data set can be obtained [here](https://www.kaggle.com/datasets/jackshiels1/bananai). A selection of images is displayed below to illustrate the data set's diversity. 
 
 ![banana images sample](https://github.com/jackshiels/bananai/blob/main/GitImages/banana_images_sample.jpg?raw=true)
 Figure 2: banana images sample.
@@ -83,11 +83,13 @@ Images were then transferred to a personal computer and converted from HEIC to J
 Initially, three categories were trained across a range of parameters. The parameters included:
 
 * Number of images.
-* Epochs (training cycles of either 20 or 50).
+* Epochs (20 or 50 training cycles).
 * Data augmentation (enabling algorithmic transformation of image data to produce a larger image set).
 * Final layer neurons (0 or 32).
 
-Training was split by number of images, then each sub-category was trained (e.g., number of epochs) at a learning rate of 0.001. MobileNetV1 96x96 0.25 was used as the transfer learning model, as its output model size small enough to fit in 256KB of RAM. 1,186 images were collected in total. Accuracy declined marginally as images were added to the model. Note: images were split in an 80:20 ratio between training and testing data, meaning image counts must be multiplied by 0.8 to get the true training and validation count.
+Training was split by number of images, then each sub-category was trained (e.g., number of epochs) at a learning rate of 0.001. MobileNetV1 96x96 0.25 was used as the transfer learning model, as its output size was small enough to fit in 256KB of RAM. 1,186 images were collected in total. Note: images were split in an 80:20 ratio between training and testing data, meaning image counts must be multiplied by 0.8 to get the true training and validation count.
+
+Accuracy declined marginally as images were added to the model. 
 
 ![three category accuracy with images](https://github.com/jackshiels/bananai/blob/main/GitImages/Charts/3cat_accuracy_image_quantity.png?raw=true)
 Figure 3: three category accuracy with images.
@@ -110,7 +112,7 @@ A large amount of the accuracy loss came from the model's inability to distingui
 ![ripe and underripe comparison](https://github.com/jackshiels/bananai/blob/main/GitImages/ripe_underripe_comparison.jpg?raw=true)
 Figure 7: ripe and underripe comparison.
 
-As such, a decision was made to narrow categories to ripe and overripe.
+As such, a decision was made to narrow the model's categories to ripe and overripe.
 
 ## Two Category Model
 The two-category model proved significantly more accurate. It is surmised that this increase in accuracy comes from the removal of ambiguity between unripe and ripe image categories, which were quite similar. Two category accuracy only increased marginally with an increase in images.
