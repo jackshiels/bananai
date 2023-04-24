@@ -156,10 +156,28 @@ Figure 14: prototype banana stand.
 
 A YouTube video of this prototype can be found [here](https://youtu.be/jCL5ce8d4T8).
 
-Furthermore, a version of the banana stand was prototyped for use in stores. This prototype is intended to be suspended above bananas (and potentially other fruit), using a mechanical arm. The arm can be adjusted as is necessary to face specific targets.
+However, this protoype was flimsy and didn't have a design suitable for use in the home. A second prototype was then developed.
+
+### Store monitoring device construction instructions
+A version of the banana stand was prototyped for use in stores. This prototype is intended to be suspended above bananas (and potentially other fruit), using a mechanical arm. The arm can be adjusted as is necessary to face specific targets.
 
 ![store prototype](https://github.com/jackshiels/bananai/blob/main/GitImages/shop_monitor.jpg?raw=true)
 Figure 15: store prototype
+
+Requirements for deployment:
+* A soldering arm kit: [Amazon](https://www.amazon.co.uk/gp/product/B07233QBBS/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1).
+* A small cardbox box (measurements x * y * z) TBD.
+* An Arduino Nano 33 BLE Sense kit: [Arduino](https://store.arduino.cc/products/arduino-tiny-machine-learning-kit).
+* A generic x volt power supply and USB-A cable (TBD).
+
+Instructions:
+* Attach the camera shield to the Arduino Nano.
+* Cut the box as illustrated below:
+![](https://github.com/jackshiels/bananai/blob/main/GitImages/box_instructions.jpg?raw=true)
+* Place the Arduino, still connected to the USB cable, within the box so as to align with the opening.
+* Attach one arm to the soldering arm base and further attach a clamp to its end.
+* Attach the clamp to the box and wrap the cable around the arm.
+* Wrap the box and arm in paper to insulate the cabling.
 
 ## Deployment Instructions
 Deployment requires that the user clone this repository and compile the MainAI.ino file onto an Arduino Nano 33 BLE Sense via the Arduino IDE. If the user wishes to train this model themselves, image data can be downloaded from [here](https://www.kaggle.com/datasets/jackshiels1/bananai). 
