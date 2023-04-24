@@ -173,12 +173,14 @@ Requirements for deployment:
 * A small cardbox box (measurements x * y * z) TBD.
 * An Arduino Nano 33 BLE Sense kit: [Arduino](https://store.arduino.cc/products/arduino-tiny-machine-learning-kit).
 * A generic x volt power supply and USB-A cable (TBD).
+* Tape.
 
 Instructions:
 * Attach the camera shield to the Arduino Nano.
 * Cut the box as illustrated below:
 ![](https://github.com/jackshiels/bananai/blob/main/GitImages/box_instructions.jpg?raw=true)
 * Place the Arduino, still connected to the USB cable, within the box so as to align with the opening.
+* * Fold the box and seal with tape.
 * Attach one arm to the soldering arm base and further attach a clamp to its end.
 * Attach the clamp to the box and wrap the cable around the arm.
 * Wrap the box and arm in paper to insulate the cabling.
