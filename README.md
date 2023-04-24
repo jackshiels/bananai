@@ -180,7 +180,7 @@ Instructions:
 * Cut the box as illustrated below:
 ![](https://github.com/jackshiels/bananai/blob/main/GitImages/box_instructions.jpg?raw=true)
 * Place the Arduino, still connected to the USB cable, within the box so as to align with the opening.
-* * Fold the box and seal with tape.
+* Fold the box and seal with tape.
 * Attach one arm to the soldering arm base and further attach a clamp to its end.
 * Attach the clamp to the box and wrap the cable around the arm.
 * Wrap the box and arm in paper to insulate the cabling.
