@@ -48,6 +48,7 @@ The AI model would be trained on Edge Impulse. Edge Impulse is a Platform-as-a-S
 
 ## Hardware
 ![Arduino Nano 33 BLE Sense](https://github.com/jackshiels/bananai/blob/main/GitImages/nano.jpg?raw=true)
+
 Figure 1: Arduino Nano 33 BLE Sense.
 
 The device selected for this AI is the Arduino Nano 33 BLE Sense (Arduino.cc, n.d.). The Nano 33 BLE Sense is capable of running machine learning models with inputs from a camera shield, which would suit a live classification of bananas. The device is also small and easy to deploy into an enclosure. However, it has several specification limitations, which are:
@@ -74,6 +75,7 @@ However, these categories were eventually condensed into ripe and overripe for r
 Photos of bananas were captured on an iPhone 13 Pro in various positions, bunches of bananas, lighting circumstances, and with varying backgrounds. Varying distances were captured to ensure that the deployed devices can recognise bananas from varying distances (see below: "Software, device design, and deployment"). The three category data set can be obtained [here](https://www.kaggle.com/datasets/jackshiels1/bananai). A selection of images is displayed below to illustrate the data set's diversity. 
 
 ![banana images sample](https://github.com/jackshiels/bananai/blob/main/GitImages/banana_images_sample.jpg?raw=true)
+
 Figure 2: banana images sample.
 
 Images were then transferred to a personal computer and converted from HEIC to JPG format. Following conversion, a batch image processing tool was used to transform images to 288x384 resolution. Images were then stored in categorised folders for ease of access and low-quality or irrelevant images were removed.
@@ -90,6 +92,7 @@ Initially, three banana categories were trained across a range of parameters. Th
 Training was split by number of images, then each sub-category was trained (e.g., number of epochs) at a learning rate of 0.001. MobileNetV1 96x96 0.25 was used as the transfer learning model, as its output size was small enough to fit within 256KB of RAM. 
 
 ![model complexity](https://github.com/jackshiels/bananai/blob/main/GitImages/model_sizes.jpg?raw=true)
+
 Figure 3: model complexity.
 
 1,186 images were collected in total. Note: images were split in a ~80:20 ratio between training and validation data, meaning image counts must be multiplied by 0.8 to get the true training and testing image count.
@@ -115,6 +118,7 @@ Figure 7: three category model accuracy.
 A large amount of the accuracy loss came from the model's inability to distinguish between ripe and underripe bananas, which have a subtle difference in colour and texture. Another study had similarly degraded accuracy between these categories (Mazen & Nashat, 2018).
 
 ![ripe and underripe comparison](https://github.com/jackshiels/bananai/blob/main/GitImages/ripe_underripe_comparison.jpg?raw=true)
+
 Figure 8: ripe and underripe comparison.
 
 As such, a decision was made to narrow the model's categories to ripe and overripe.
