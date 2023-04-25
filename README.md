@@ -243,3 +243,10 @@ Saragih, R. E. and Emanuel, A. W. R. (2021). 'Banana ripeness classification bas
 
 Tensorflow (2022). *'Transfer learning and fine-tuning'*. Available at: 
 https://www.tensorflow.org/tutorials/images/transfer_learning (accessed 20 March 2023). 
+
+# Declaration of Authorship
+I, Jack Shiels, confirm that the work presented in this assessment is my own. Where information has been derived from other sources, I confirm that this has been indicated in the work.
+
+Jack Shiels
+
+27/04/2023
