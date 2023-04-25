@@ -150,7 +150,7 @@ Figure 13: two category accuracy with final layer neurons.
 Ultimately, the model with 95% training and 96% validation accuracy was selected, as it represented the most generally accurate version.
 
 # Software, device design, and deployment
-Software was exported from Edge Impulse as an Arduino library, which was subsequently modified and is available in this git repository. The library draws on image data from the Arduino's camera shield and runs this data in the model. Inferences are then drawn and logged on the serial console. Originally, the development plan included coding an alert for when fruit becomes unripe. However, time constraints meant this was not possible. Furthermore, the chosen Arduino model did not possess Wi-Fi capabilities, making networking a challenge. 
+Software was exported from Edge Impulse as an Arduino library, which was subsequently modified and is available in this git repository. The library draws on image data from the Arduino's camera shield and runs this data in the model. Inferences are then drawn and logged on the serial console. Originally, the development plan included coding an alert for when fruit becomes unripe. However, time constraints meant this was not possible. Furthermore, the chosen Arduino model did not possess Wi-Fi capabilities, making networking a challenge. However, the device was set to act as a low-energy Bluetooth® peripheral for remote reading, using some code from Arduino.cc (2023).
 
 Code was deployed on the Arduino, and a prototype banana stand was constructed out of a box and a kitchen hanger.
 
@@ -158,6 +158,7 @@ Code was deployed on the Arduino, and a prototype banana stand was constructed o
 
 Figure 14: prototype banana stand.
 
+[![youtube](https://github.com/jackshiels/bananai/blob/main/GitImages/youtube_link.png?raw=true)](https://youtu.be/jCL5ce8d4T8)
 A YouTube video of this prototype can be found [here](https://youtu.be/jCL5ce8d4T8).
 
 However, this protoype was flimsy and didn't have a design suitable for use in the home. A second prototype was then developed.
@@ -170,9 +171,9 @@ Figure 15: store prototype
 
 Requirements for deployment:
 * A soldering arm kit: [Amazon](https://www.amazon.co.uk/gp/product/B07233QBBS/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1).
-* A small cardbox box (measurements x * y * z) TBD.
+* A small cardbox box (measurements 10 * 2 * 10 cm).
 * An Arduino Nano 33 BLE Sense kit: [Arduino](https://store.arduino.cc/products/arduino-tiny-machine-learning-kit).
-* A generic x volt power supply and USB-A cable (TBD).
+* A generic 5 volt power supply and USB-A cable: [Amazon](https://www.amazon.co.uk/Multibao-Adapter-Charger-Tablet-Reader/dp/B098NF2J84/ref=sr_1_3?keywords=5v+usb+power+supply&qid=1682451531&sprefix=5v+usb+power%2Caps%2C125&sr=8-3).
 * Tape.
 
 Instructions:
@@ -216,6 +217,8 @@ This project sought to determine how many images were needed to develop a deploy
 
 # References
 Amazon (2023). *'Model fit: underfitting vs. overfitting'*. Available at: https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html (accessed 1 April 2023).
+
+Arduino.cc (2023). *'Connecting Nano 33 BLE Devices over Bluetooth®'*. Available at: https://docs.arduino.cc/tutorials/nano-33-ble-sense/ble-device-to-device (accessed 25 April 2023).
 
 Arduino.cc (n.d.). *'Nano 33 BLE Sense'*. Available at: https://docs.arduino.cc/hardware/nano-33-ble-sense (accessed 13 March 2023).
 
