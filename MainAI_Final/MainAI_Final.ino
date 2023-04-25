@@ -16,6 +16,7 @@
 
 /* Includes ---------------------------------------------------------------- */
 #include <BananAI_Two_Cat_Final_inferencing.h>
+#include <ArduinoBLE.h>
 #include <Arduino_OV767X.h> //Click here to get the library: http://librarymanager/All#Arduino_OV767X
 
 #include <stdint.h>
@@ -26,6 +27,15 @@
 #define EI_CAMERA_RAW_FRAME_BUFFER_ROWS     120
 
 #define DWORD_ALIGN_PTR(a)   ((a & 0x3) ?(((uintptr_t)a + 0x4) & ~(uintptr_t)0x3) : a)
+
+// Bluetooth
+const char* deviceServiceUuid = "d54ea378-e39c-11ed-b5ea-0242ac120002";
+const char* deviceServiceCharacteristicUuid = "da79b658-e39c-11ed-b5ea-0242ac120002";
+
+BLEService fruitRipenessService(deviceServiceUuid);
+BLEByteCharacteristic ripenessCharacteristic(deviceServiceCharacteristicUuid, BLERead | BLEWrite);
+
+int ripenessLevel = -1;
 
 /*
  ** NOTE: If you run into TFLite arena allocation issue.
@@ -131,9 +141,22 @@ void setup()
 {
     // put your setup code here, to run once:
     Serial.begin(115200);
-    // comment out the below line to cancel the wait for USB connection (needed for native USB)
+    
+    // Attempt to set up BLE
+    if (!BLE.begin()) {
+    Serial.println("- BLE failed");
+    while (1);
+    }
+
+    BLE.setLocalName("BananAI Monitor");
+    BLE.setAdvertisedService(fruitRipenessService);
+    
+    fruitRipenessService.addCharacteristic(ripenessCharacteristic);
+    BLE.addService(fruitRipenessService);
+    ripenessCharacteristic.writeValue(-1);
+    BLE.advertise();
+
     while (!Serial);
-    Serial.println("Edge Impulse Inferencing Demo");
 
     // summary of inferencing settings (from model_metadata.h)
     ei_printf("Inferencing settings:\n");
@@ -223,6 +246,15 @@ void loop()
             ei_printf("    No objects found\n");
         }
 #else
+        if (result.classification[1].value > 0.6f){
+          ei_printf("Banana is ready to eat :D \n");
+          ripenessCharacteristic.writeValue(1);
+          }
+        else if (result.classification[0].value > 0.6f)
+        {
+          ei_printf("Banana is unripe :( \n");
+          ripenessCharacteristic.writeValue(0);
+          }
         for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
             ei_printf("    %s: %.5f\n", result.classification[ix].label,
                                         result.classification[ix].value);
@@ -241,6 +273,20 @@ void loop()
         if (snapshot_mem) ei_free(snapshot_mem);
     }
     ei_camera_deinit();
+
+    BLEDevice central = BLE.central();
+    Serial.println("Looking for host device...");
+    delay(500);
+
+    if (central) {
+      Serial.println("* Connected to central device!");
+      Serial.print("* Device MAC address: ");
+      Serial.println(central.address());
+      Serial.println(" ");
+      }
+    
+    Serial.println("* Disconnected from central device!");
+  }
 }
 
 /**
