@@ -11,6 +11,12 @@ Bananas are an instantly recognisable fruit. Undeniably unique, bananas are easy
 
 BananAI is the application of deep learning to banana ripeness, using image recognition to determine when a banana is best to eat. In combination with an Arduino BLE 33 Sense, BananAI is deployed on a banana stand to provide an immediate indication of when to consume, and for monitoring ripeness in a shop setting. The following document describes how BananAI came to be, and outlines the steps taken in its development. Instructions on how to deploy are also provided.
 
+The GitHub repository can be found [here](https://github.com/jackshiels/bananai).
+
+The final two category Edge Impulse model can be cloned from [here](https://studio.edgeimpulse.com/public/215222/latest).
+
+An Excel spreadsheet with links to each version of the Edge Impulse projects can be found [here](https://github.com/jackshiels/bananai/blob/main/Data/DataCounts.xlsx).
+
 # Contents
 * Research question
 * Project outline
@@ -72,7 +78,7 @@ Hence, images of bananas were split into three categories, being:
 
 However, these categories were eventually condensed into ripe and overripe for reasons described below.
 
-Photos of bananas were captured on an iPhone 13 Pro in various positions, bunches of bananas, lighting circumstances, and with varying backgrounds. Varying distances were captured to ensure that the deployed devices can recognise bananas from varying distances (see below: "Software, device design, and deployment"). The three category data set can be obtained [here](https://www.kaggle.com/datasets/jackshiels1/bananai). A selection of images is displayed below to illustrate the data set's diversity. 
+Photos of bananas were captured on an iPhone 13 Pro in various positions, bunches of bananas, lighting circumstances, and with varying backgrounds. Different distances were captured to ensure that the deployed devices can recognise bananas from varying positions (see below: "Software, device design, and deployment"). The three category data set can be obtained [here](https://www.kaggle.com/datasets/jackshiels1/bananai). A selection of images is displayed below to illustrate the data set's diversity. 
 
 ![banana images sample](https://github.com/jackshiels/bananai/blob/main/GitImages/banana_images_sample.jpg?raw=true)
 
@@ -150,7 +156,7 @@ Figure 13: two category accuracy with final layer neurons.
 Ultimately, the model with 95% training and 96% validation accuracy was selected, as it represented the most generally accurate version.
 
 # Software, device design, and deployment
-Software was exported from Edge Impulse as an Arduino library, which was subsequently modified and is available in this git repository. The library draws on image data from the Arduino's camera shield and runs this data in the model. Inferences are then drawn and logged on the serial console. Originally, the development plan included coding an alert for when fruit becomes unripe. However, time constraints meant this was not possible. Furthermore, the chosen Arduino model did not possess Wi-Fi capabilities, making networking a challenge. However, the device was set to act as a low-energy Bluetooth® peripheral for remote reading, using some code from Arduino.cc (2023).
+Software was exported from Edge Impulse as an Arduino library, which was subsequently modified. The library draws on image data from the Arduino's camera shield and runs this data in the model. Inferences are then drawn and logged on the serial console. Originally, the development plan included coding an alert for when fruit becomes unripe. However, time constraints meant this was not possible. Furthermore, the chosen Arduino model did not possess Wi-Fi capabilities, making networking a challenge. However, the device was set to act as a low-energy Bluetooth® peripheral for remote reading, using some code from Arduino.cc (2023).
 
 Code was deployed on the Arduino, and a prototype banana stand was constructed out of a box and a kitchen hanger.
 
@@ -168,6 +174,9 @@ A version of the banana stand was prototyped for use in stores. This prototype i
 
 ![store prototype](https://github.com/jackshiels/bananai/blob/main/GitImages/shop_monitor.jpg?raw=true)
 Figure 15: store prototype
+
+[![youtube](https://github.com/jackshiels/bananai/blob/main/GitImages/youtube_link_2.png?raw=true)](https://www.youtube.com/watch?v=2Os1Tyi7HJo)
+A YouTube video of this prototype can be found [here](https://www.youtube.com/watch?v=2Os1Tyi7HJo).
 
 Requirements for deployment:
 * A soldering arm kit: [Amazon](https://www.amazon.co.uk/gp/product/B07233QBBS/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1).
@@ -197,10 +206,6 @@ Figure 16: deploy library
 Figure 16: install library
 
 The final two category Edge Impulse model can be cloned from [here](https://studio.edgeimpulse.com/public/215222/latest).
-
-The two category model with all training attempts can be found [here](https://studio.edgeimpulse.com/public/196857/latest).
-
-The three category model with all training attempts can be found [here](https://studio.edgeimpulse.com/public/209765/latest).
 
 # Findings and conclusion
 ## Reflections and future work
