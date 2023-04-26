@@ -223,6 +223,9 @@ void loop()
             ei_printf("    No objects found\n");
         }
 #else
+        if (result.classification[1].value > 0.6f){ei_printf("Banana is ready to eat :D \n");}
+        else if (result.classification[0].value > 0.6f){ei_printf("Banana is unripe :( \n");}
+        else{ei_printf("Uncertain about banana ripeness. Retrying...\n");}
         for (size_t ix = 0; ix < EI_CLASSIFIER_LABEL_COUNT; ix++) {
             ei_printf("    %s: %.5f\n", result.classification[ix].label,
                                         result.classification[ix].value);
