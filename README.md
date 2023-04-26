@@ -187,7 +187,14 @@ Instructions:
 * Wrap the box and arm in paper to insulate the cabling.
 
 ## Deployment Instructions
-Deployment requires that the user clone this repository and compile the MainAI.ino file onto an Arduino Nano 33 BLE Sense via the Arduino IDE. If the user wishes to train this model themselves, image data can be downloaded from [here](https://www.kaggle.com/datasets/jackshiels1/bananai). 
+Deployment requires that the user clone this repository and compile the MainAI.ino file onto an Arduino Nano 33 BLE Sense via the Arduino IDE. Additionally, the user will need to compile the Arduino library on the Edge Impulse project and install it via the Arduino IDE (see below). If the user wishes to train this model themselves, image data can be downloaded from [here](https://www.kaggle.com/datasets/jackshiels1/bananai). 
+
+![deploy library](https://github.com/jackshiels/bananai/blob/main/GitImages/deployment.jpg?raw=true)
+Figure 16: deploy library
+
+![install library](https://github.com/jackshiels/bananai/blob/main/GitImages/add_library.jpg?raw=true)
+
+Figure 16: install library
 
 The final two category Edge Impulse model can be cloned from [here](https://studio.edgeimpulse.com/public/215222/latest).
 
@@ -236,3 +243,10 @@ Saragih, R. E. and Emanuel, A. W. R. (2021). 'Banana ripeness classification bas
 
 Tensorflow (2022). *'Transfer learning and fine-tuning'*. Available at: 
 https://www.tensorflow.org/tutorials/images/transfer_learning (accessed 20 March 2023). 
+
+# Declaration of Authorship
+I, Jack Shiels, confirm that the work presented in this assessment is my own. Where information has been derived from other sources, I confirm that this has been indicated in the work.
+
+Jack Shiels
+
+27/04/2023
