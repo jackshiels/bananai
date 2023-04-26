@@ -11,6 +11,8 @@ Bananas are an instantly recognisable fruit. Undeniably unique, bananas are easy
 
 BananAI is the application of deep learning to banana ripeness, using image recognition to determine when a banana is best to eat. In combination with an Arduino BLE 33 Sense, BananAI is deployed on a banana stand to provide an immediate indication of when to consume, and for monitoring ripeness in a shop setting. The following document describes how BananAI came to be, and outlines the steps taken in its development. Instructions on how to deploy are also provided.
 
+The GitHub repository can be found [here](https://github.com/jackshiels/bananai).
+
 # Contents
 * Research question
 * Project outline
@@ -168,6 +170,9 @@ A version of the banana stand was prototyped for use in stores. This prototype i
 
 ![store prototype](https://github.com/jackshiels/bananai/blob/main/GitImages/shop_monitor.jpg?raw=true)
 Figure 15: store prototype
+
+[![youtube](https://github.com/jackshiels/bananai/blob/main/GitImages/youtube_link_2.png?raw=true)](https://youtu.be/jCL5ce8d4T8)
+A YouTube video of this prototype can be found [here](https://www.youtube.com/watch?v=2Os1Tyi7HJo).
 
 Requirements for deployment:
 * A soldering arm kit: [Amazon](https://www.amazon.co.uk/gp/product/B07233QBBS/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1).
