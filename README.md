@@ -171,7 +171,7 @@ A version of the banana stand was prototyped for use in stores. This prototype i
 ![store prototype](https://github.com/jackshiels/bananai/blob/main/GitImages/shop_monitor.jpg?raw=true)
 Figure 15: store prototype
 
-[![youtube](https://github.com/jackshiels/bananai/blob/main/GitImages/youtube_link_2.png?raw=true)](https://youtu.be/jCL5ce8d4T8)
+[![youtube](https://github.com/jackshiels/bananai/blob/main/GitImages/youtube_link_2.png?raw=true)](https://www.youtube.com/watch?v=2Os1Tyi7HJo)
 A YouTube video of this prototype can be found [here](https://www.youtube.com/watch?v=2Os1Tyi7HJo).
 
 Requirements for deployment:
